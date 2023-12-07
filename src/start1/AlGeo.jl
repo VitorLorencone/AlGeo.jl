@@ -1,7 +1,5 @@
 module AlGeo
 
-function sum(a, b)
-    return a+b
-end
+include("Algebra.jl")
 
-end # module AlGeo
+end
