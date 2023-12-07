@@ -1,0 +1,4 @@
+name = "AlGeo"
+uuid = "ac8882cc-b2bf-4c44-88a5-a54ff16a06a3"
+authors = ["Vitor <vitorlorencone@gmail.com>"]
+version = "0.1.0"
