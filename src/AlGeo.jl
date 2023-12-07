@@ -1,5 +1,5 @@
 module AlGeo
 
-greet() = print("Hello World!")
+include("Algebra.jl")
 
-end # module AlGeo
+end
