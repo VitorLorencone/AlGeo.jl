@@ -2,3 +2,6 @@ name = "AlGeo"
 uuid = "ac8882cc-b2bf-4c44-88a5-a54ff16a06a3"
 authors = ["Vitor <vitorlorencone@gmail.com>"]
 version = "0.1.0"
+
+[deps]
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"

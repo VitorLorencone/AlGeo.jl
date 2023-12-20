@@ -1,4 +1,10 @@
+module Alg
+export CurrentAlgebra
+
 include("CanonicalBasis.jl")
+include("OperationTable.jl")
+
+CurrentAlgebra::Algebra = nothing
 
 """
     Algebra(p, q, VectorBasis, Basis)
@@ -49,5 +55,8 @@ Returns the created object.
 """
 function CreateAlgebra(p, q = 0, VectorBasis = CanonVectorBasis(p, q), Basis = CanonBasis(VectorBasis))::Algebra
     @assert p >= 0 && q >= 0
-    return Algebra(p, q, VectorBasis, Basis)
+    CurrentAlgebra = Algebra(p, q, VectorBasis, Basis)
+    return CurrentAlgebra
+end
+
 end
