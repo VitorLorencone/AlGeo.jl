@@ -1,17 +1,18 @@
 """
     Combinations(lst, k)
 
-Função que calcula as combinações em uma lista de strings.
+Function that calculates all combinations in an array of strings.
 
-# Argumentos
-- `lst::Array{String}` : Uma lista de strings.
-- `k::Number` : A ordem das combinações.
+# Arguments
+- `lst::Array` : A list of Strings.
+- `k::Int` : The order of the combinations.
+- `count::Int : The index of each element`
 
-# Retorno
-Retorna uma lista com todas as combinações dos elementos tomados k a k.
+# Return
+Returns an array with all combinations of elements taken k at a time.
 
 """
-function Combinations(lst::Array, k::Int)::Array
+function Combinations(lst::Array, k::Int, count::Int)::Array{Tuple{Any,Int}}
     
     result = []
     n = length(lst)
@@ -27,7 +28,8 @@ function Combinations(lst::Array, k::Int)::Array
             element = element * lst[i]
         end
     
-        push!(result, element)
+        push!(result, (element, count))
+        count += 1
 
         index[j] += 1
         while index[1] != n-k+2

@@ -1,28 +1,50 @@
 include("CanonicalBasis.jl")
 
+"""
+    Algebra(p, q, VectorBasis, Basis)
+
+A structure to define an algebra to be worked with its respective dimensions and canonical vectors.
+
+# Arguments
+- `p::Int` : The first parameter of the definition
+- `q::Int` : The second parameter of the definition
+- `VectorBasis::Array{String}` : An Array with vectors to work with
+- `Basis::Array{Tuple{String,Int}}` : And Array with the multivector base and it's indexes
+
+"""
 struct Algebra
 
     p::Int
     q::Int
-    VectorBasis::Array{Tuple{String, Int}}
-    Basis::Array{String}
+    VectorBasis::Array{String}
+    Basis::Array{Tuple{String,Int}}
 
+end
+
+# Show Functions for Algebra Struct
+
+function Base.show(io::IO, a::Algebra)
+    println(io, "> Algebra <")
+    println(io, "p: $(a.p)")
+    println(io, "q: $(a.q)")
+    println(io, "VectorBasis: $(a.VectorBasis)")
+    println(io, "Basis: $([tupla[1] for tupla in a.Basis])")
 end
 
 """
     CreateAlgebra(p, q, VectorBasis, Basis)
 
-Função que cria uma estrutura de um objeto algébrico de parâmetros p, q, R^{p, q} e seu espaço multivetorial}.
-Caso não definidos, os dois últimos parâmetros são automaticamente calculados como canônicos.
+Constructor Function of an algebraic object with parameters p, q, R^{p, q}, and its multivector space.
+If not defined, the last two parameters are automatically calculated as canonical.
 
-# Argumentos
-- `p::Int` : O primeiro parâmetro da definição
-- `q::Int` : O segundo parâmetro da definição
-- `VectorBasis::Array{Tuple{String, Int}}` : O espaço vetorial de base.
-- `Basis::Array{String}` : O espaço multivetorial de base.
+# Arguments
+- `p::Int` : The first parameter of the definition
+- `q::Int` : The second parameter of the definition
+- `VectorBasis::Array{String}` : An Array with vectors to work with
+- `Basis::Array{Tuple{String,Int}}` : And Array with the multivector base and it's indexes
 
-# Retorno
-Retorna o objeto criado.
+# Return
+Returns the created object.
 
 """
 function CreateAlgebra(p, q = 0, VectorBasis = CanonVectorBasis(p, q), Basis = CanonBasis(VectorBasis))::Algebra

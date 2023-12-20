@@ -3,26 +3,26 @@ include("Combinations.jl")
 """
     CanonVectorBasis(p, q)
 
-Função que escreve o espaço vetorial canônico, dados os parâmetros p e q de definição.
+Function that writes the canonical vector space, given the parameters p and q for definition
 
-# Argumentos
-- `p::Int` : O primeiro parâmetro da definição
-- `q::Int` : O segundo parâmetro da definição
+# Arguments
+- `p::Int` : The first parameter of the definition
+- `q::Int` : The second parameter of the definition
 
-# Retorno
-Retorna uma lista de tuplas com todos os elementos necessários para esse espaço.
+# Return
+Return an array of strings with all the necessary elements for this space.
 
 """
-function CanonVectorBasis(p::Int, q::Int = 0)::Array{Tuple{String, Int}}
+function CanonVectorBasis(p::Int, q::Int = 0)::Array{String}
 
     @assert p >= 0 && q >= 0
 
-    basis::Array{Tuple{String, Int}} = []
+    basis::Array{String} = []
 
     for i in 1:(p+q)
 
         strName::String = "e" * string(i)
-        push!(basis, (strName, i))
+        push!(basis, strName)
 
     end
 
@@ -30,30 +30,29 @@ function CanonVectorBasis(p::Int, q::Int = 0)::Array{Tuple{String, Int}}
 
 end
 
-
 """
     CanonBasis(VectorCanonBasis)
 
-Função que escreve todas as combinações.
+Function that lists all the combinations of canonical vectors in a given Algebra.
 
-# Argumentos
-- `VectorCanonBasis::Array{Tuple{String, Int}}` : Uma lista de tuplas, que será feita a combinação.
+# Arguments
+- `VectorBasis::Array{String}` : An array of strings to be combined.
 
-# Retorno
-Retorna uma lista com todas as combinações dos elementos, formando a base do espaço multivetorial.
+# Return
+Returns a list of tuples with all combinations of the elements and its index, forming the basis of the multivector space.
 
 """
-function CanonBasis(VectorBasis::Array{Tuple{String, Int}})::Array{String}
+function CanonBasis(VectorBasis::Array{String})::Array{Tuple{String, Int}}
     
-    basis::Array{String} = ["1"]
+    basis::Array{Tuple{String, Int}} = [("1", 1)]
 
-    Vector = []
+    Vector::Array{String} = []
     for i in VectorBasis
-        push!(Vector, i[1])
+        push!(Vector, i)
     end
 
     for i in 1:length(Vector)
-        basis = vcat(basis, Combinations(Vector, i))
+        basis = vcat(basis, Combinations(Vector, i, length(basis)+1))
     end
 
     return basis
