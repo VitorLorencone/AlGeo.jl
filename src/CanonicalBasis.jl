@@ -52,9 +52,22 @@ function CanonBasis(VectorBasis::Array{String})::Array{Tuple{String, Int}}
     end
 
     for i in 1:length(Vector)
-        basis = vcat(basis, Combinations(Vector, i, length(basis)+1))
+        basis = vcat(basis, CombinationsTuple(Vector, i, length(basis)+1))
     end
 
     return basis
+
+end
+
+function indexesBasis(p::Int = 0, q::Int = 0)::Array{Array{Int}}
+
+    basis::Array = 1:(p+q)
+    index = [[0]]
+
+    for i in 1:length(basis)
+        index = vcat(index, CombinationsArray(basis, i))
+    end
+
+    return index
 
 end

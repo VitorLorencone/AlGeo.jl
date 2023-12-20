@@ -1,10 +1,8 @@
 module Alg
-export CurrentAlgebra
+export Algebra, CreateAlgebra, CurrentAlgebra
 
 include("CanonicalBasis.jl")
 include("OperationTable.jl")
-
-CurrentAlgebra::Algebra = nothing
 
 """
     Algebra(p, q, VectorBasis, Basis)
@@ -24,6 +22,7 @@ struct Algebra
     q::Int
     VectorBasis::Array{String}
     Basis::Array{Tuple{String,Int}}
+    Indexes::Array{Array{Int}}
 
 end
 
@@ -36,6 +35,8 @@ function Base.show(io::IO, a::Algebra)
     println(io, "VectorBasis: $(a.VectorBasis)")
     println(io, "Basis: $([tupla[1] for tupla in a.Basis])")
 end
+
+global CurrentAlgebra::Algebra = Algebra(0, 0, [], [("1", 1)], [[0]])
 
 """
     CreateAlgebra(p, q, VectorBasis, Basis)
@@ -53,9 +54,9 @@ If not defined, the last two parameters are automatically calculated as canonica
 Returns the created object.
 
 """
-function CreateAlgebra(p, q = 0, VectorBasis = CanonVectorBasis(p, q), Basis = CanonBasis(VectorBasis))::Algebra
+function CreateAlgebra(p = 0, q = 0, VectorBasis = CanonVectorBasis(p, q), Basis = CanonBasis(VectorBasis))::Algebra
     @assert p >= 0 && q >= 0
-    CurrentAlgebra = Algebra(p, q, VectorBasis, Basis)
+    global CurrentAlgebra = Algebra(p, q, VectorBasis, Basis, indexesBasis(p, q))
     return CurrentAlgebra
 end
 

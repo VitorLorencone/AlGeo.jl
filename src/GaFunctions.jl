@@ -3,9 +3,9 @@ include("Algebra.jl")
 using .Alg
 
 function lenElements(vec::AbstractGeometricAlgebraType)::Int
-    return vec.val.n
+    return length(vec.val.nzind)
 end
 
 function grade(vec::Blade)
-    return 1
+    return length(CurrentAlgebra.Indexes[vec.val.nzind[1]])
 end
