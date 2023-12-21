@@ -130,7 +130,7 @@ function createConsts()
         varName = Symbol(CurrentAlgebra.Basis[i][1])
         k = [i]
         varValue = Multivectors(k,[1])
-        eval(Meta.parse("const $(varName) = Multivectors($k,[1])"))
+        eval(Meta.parse("const global $(varName) = Multivectors($k,[1])"))
     end
 end
 

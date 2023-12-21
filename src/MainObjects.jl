@@ -52,10 +52,3 @@ function Base.show(io::IO, a::AbstractGeometricAlgebraType)
     ans = ans[1:end-2]
     print(ans)
 end
-
-for i in 2:length(CurrentAlgebra.Basis)
-    varName = Symbol(CurrentAlgebra.Basis[i][1])
-    k = [i]
-    varValue = Multivectors(k,[1])
-    eval(Meta.parse("const $(varName) = Multivectors($k,[1])"))
-end
