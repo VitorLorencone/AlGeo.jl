@@ -1,17 +1,31 @@
-module Workspace
-export a
-
 include("GaFunctions.jl")
-using .Alg
 
-a = CreateAlgebra(3)
-b = Multivectors([4], [4])
-c = Multivectors([3, 5], [6, 7])
-d = Multivectors([8], [7])
-println(lenElements(b))
-println(lenElements(c))
-println(lenElements(d))
-println(grade(b))
-print(grade(d))
+#= global a = quote
+end
+
+@eval function SetWorkSpace(Al::Algebra)
+    
+    symbolArray = []
+    for i in eachindex(Al.Basis)
+        push!(symbolArray, Symbol(Al.Basis[i][1]))
+    end
+
+    $([:($x = 1) for x in [:e1, :e2]]...)
+    $a
 
 end
+
+function WorkSpace(Al::Algebra, expr::Expr)
+
+    a = expr
+    SetWorkSpace(Al)
+
+end
+
+al = CreateAlgebra(3)
+
+b = quote
+print(e1+e2)
+end
+
+WorkSpace(al, b) =#
