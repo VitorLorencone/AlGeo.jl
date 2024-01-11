@@ -98,10 +98,13 @@ function bladeGeometricProduct(ei::Blade, ej::Blade, Al::Algebra = CurrentAlgebr
 
     finalScalar *= (-1)^(swap)
 
-    #println(finalIndex)
-    #println(finalScalar)
     return Multivectors([findfirst(x -> x == finalIndex, Al.Indexes)],[finalScalar])
 
+end
+
+function bladeScalarProduct(ei::Blade, k::Number, Al::Algebra = CurrentAlgebra)::Blade
+    ei.val.nzval[1] *= k
+    return ei
 end
 
 function bladeInnerProduct(ei::Blade, ej::Blade)
@@ -121,7 +124,7 @@ end
 function bladeOuterProduct(ei::Blade, ej::Blade)
     k = grade(ei)
     l = grade(ej)
-    return gradeProjection(bladeGeometricProduct(a,b), l+k)
+    return gradeProjection(bladeGeometricProduct(ei,ej), l+k)
 
 end
 
@@ -134,10 +137,25 @@ function createConsts()
     end
 end
 
-#= k = CreateAlgebra(3)
-println(CurrentAlgebra.Indexes)
-a = Multivectors([4],[1])
-b = Multivectors([5],[1])
-println(bladeGeometricProduct(a,b))
-println(bladeInnerProduct(a,b))
-println(bladeOuterProduct(a,b)) =#
+function Base.:*(ei::Blade, ej::Blade)::Blade
+    return bladeGeometricProduct(ei,ej)
+end
+
+function Base.:*(ei::Blade, k::Int64)::Blade
+    return bladeScalarProduct(ei,k)
+end
+function Base.:*(k::Int64, ei::Blade)::Blade
+    return bladeScalarProduct(ei,k)
+end
+
+function Base.:|(ei::Blade, ej::Blade)::Blade
+    return bladeInnerProduct(ei,ej)
+end
+
+function Base.:^(ei::Blade, ej::Blade)::Blade
+    return bladeOuterProduct(ei,ej)
+end
+
+function ⋅(ei::Blade, ej::Blade)::Blade
+    return basisScalarProduct(ei, ej)
+end

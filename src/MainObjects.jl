@@ -1,5 +1,4 @@
 include("Algebra.jl")
-using .Alg
 import SparseArrays
 using .SparseArrays
 

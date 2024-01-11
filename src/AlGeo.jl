@@ -1,10 +1,17 @@
 module AlGeo
-export CreateAlgebra, createConsts, Multivectors, bladeIndex, bladeScalar, bladeGeometricProduct, bladeInnerProduct, bladeOuterProduct, grade, gradeProjection, basisScalarProduct
 
 include("Workspace.jl")
 
-CreateAlgebra(3,0)
-createConsts()
-print(e1)
+#= println(Algeo(3))
+println(CurrentAlgebra.Indexes)
+println(e3)
+println(e1e2)
+println(e3*e1e2)
+println(e3|e1e2)
+println(e3^e1e2)
+println(3*5*e1e3) =#
+
+#= println(Algeo(0, 1, ["i"]))
+println(i * i) =#
 
 end

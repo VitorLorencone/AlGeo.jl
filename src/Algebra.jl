@@ -1,6 +1,3 @@
-module Alg
-export Algebra, CreateAlgebra, CurrentAlgebra
-
 include("CanonicalBasis.jl")
 include("OperationTable.jl")
 
@@ -58,5 +55,4 @@ function CreateAlgebra(p = 0, q = 0, VectorBasis = CanonVectorBasis(p, q), Basis
     @assert p >= 0 && q >= 0
     global CurrentAlgebra = Algebra(p, q, VectorBasis, Basis, indexesBasis(p, q))
     return CurrentAlgebra
-end
 end

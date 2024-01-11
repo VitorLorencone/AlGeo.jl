@@ -1,31 +1,28 @@
 include("GaFunctions.jl")
 
-#= global a = quote
-end
+function CreateSymbols(stringSymbols::Array)::Nothing
 
-@eval function SetWorkSpace(Al::Algebra)
-    
     symbolArray = []
-    for i in eachindex(Al.Basis)
-        push!(symbolArray, Symbol(Al.Basis[i][1]))
+
+    for i in eachindex(stringSymbols)
+        if i == 1
+            continue
+        end
+        push!(symbolArray, Symbol(stringSymbols[i][1]))
     end
 
-    $([:($x = 1) for x in [:e1, :e2]]...)
-    $a
+    for k in eachindex(symbolArray)
+        symbol = symbolArray[k]
+        eval(:($symbol = Multivectors([$k+1], [1])))
+    end
 
 end
 
-function WorkSpace(Al::Algebra, expr::Expr)
+function Algeo(p = 0, q = 0, VectorBasis = CanonVectorBasis(p, q), Basis = CanonBasis(VectorBasis))::Algebra
 
-    a = expr
-    SetWorkSpace(Al)
+    Al = CreateAlgebra(p, q, VectorBasis, Basis)
+    CreateSymbols(Basis)
+
+    return Al
 
 end
-
-al = CreateAlgebra(3)
-
-b = quote
-print(e1+e2)
-end
-
-WorkSpace(al, b) =#
