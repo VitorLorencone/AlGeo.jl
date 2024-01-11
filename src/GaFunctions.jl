@@ -102,9 +102,9 @@ function bladeGeometricProduct(ei::Blade, ej::Blade, Al::Algebra = CurrentAlgebr
 
 end
 
-function bladeScalarProduct(ei::Blade, k::Number, Al::Algebra = CurrentAlgebra)::Blade
-    ei.val.nzval[1] *= k
-    return ei
+function bladeScalarProduct(ei::Blade, k::Number)::Blade
+    finalScalar = ei.val.nzval[1] * k
+    return Multivectors([ei.val.nzind[1]], [finalScalar])
 end
 
 function bladeInnerProduct(ei::Blade, ej::Blade)
@@ -141,10 +141,10 @@ function Base.:*(ei::Blade, ej::Blade)::Blade
     return bladeGeometricProduct(ei,ej)
 end
 
-function Base.:*(ei::Blade, k::Int64)::Blade
+function Base.:*(ei::Blade, k::Number)::Blade
     return bladeScalarProduct(ei,k)
 end
-function Base.:*(k::Int64, ei::Blade)::Blade
+function Base.:*(k::Number, ei::Blade)::Blade
     return bladeScalarProduct(ei,k)
 end
 

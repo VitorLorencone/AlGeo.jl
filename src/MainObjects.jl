@@ -6,13 +6,13 @@ abstract type AbstractGeometricAlgebraType end
 
 mutable struct Multivector <: AbstractGeometricAlgebraType
 
-    val::SparseVector
+    val::SparseArrays.SparseVector{Float64, Int64}
 
 end
 
 mutable struct Blade <: AbstractGeometricAlgebraType
 
-    val::SparseVector
+    val::SparseArrays.SparseVector{Float64, Int64}
 
 end
 
@@ -43,11 +43,12 @@ function Base.show(io::IO, a::AbstractGeometricAlgebraType)
 
     for i in eachindex(ind)
         if ind[i] > 1
-            ans = ans * string(val[i]) * CurrentAlgebra.Basis[ind[i]][1] * " + "
+            ans = ans * string(val[i]) * "*" * CurrentAlgebra.Basis[ind[i]][1] * " + "
         elseif ind[1] == 1
-            ans = ans * string(val[i]) * " + "
+                ans = ans * string(val[i]) * " + "
         end
     end
     ans = ans[1:end-2]
+
     print(ans)
 end
