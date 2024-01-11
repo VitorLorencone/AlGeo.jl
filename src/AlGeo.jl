@@ -1,4 +1,5 @@
 module AlGeo
+export Algeo, createConsts, Multivectors, bladeIndex, bladeScalar, bladeGeometricProduct, bladeInnerProduct, bladeOuterProduct, grade, gradeProjection, basisScalarProduct
 
 include("Workspace.jl")
 
