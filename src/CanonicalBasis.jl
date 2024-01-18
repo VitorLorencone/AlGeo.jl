@@ -15,7 +15,11 @@ Return an array of strings with all the necessary elements for this space.
 """
 function CanonVectorBasis(p::Int, q::Int = 0)::Array{String}
 
-    @assert p >= 0 && q >= 0
+    if(p < 0) 
+        throw(DomainError(p,"The parameter p must be greater than 0"))
+    elseif(q < 0)
+        throw(DomainError(q,"The parameter q must be greater than 0"))
+    end
 
     basis::Array{String} = []
 
@@ -59,7 +63,20 @@ function CanonBasis(VectorBasis::Array{String})::Array{Tuple{String, Int}}
 
 end
 
-function indexesBasis(p::Int = 0, q::Int = 0)::Array{Array{Int}}
+"""
+    IndexesBasis(p, q)::Array
+
+A function to return all the indexes of every canon multivector. It is used for internal calculations.
+
+# Arguments
+- `p::Int` : The first parameter of the definition
+- `q::Int` : The second parameter of the definition
+
+# Return
+Returns an Array of Arrays of integers, with all indexes in order.
+
+"""
+function IndexesBasis(p::Int = 0, q::Int = 0)::Array{Array{Int}}
 
     basis::Array = 1:(p+q)
     index = [[0]]

@@ -1,17 +1,66 @@
 include("MainObjects.jl")
 
+"""
+    bladeIndex(vec, Al)::Array
+
+Function that returns the indexes of a blade.
+
+# Arguments
+- `vec::Blade` : A Blade.
+- `Al::Algebra` : The Algebra, it is setted as CurrentAlgebra.
+
+# Return
+Returns an array with all indexes of that blade.
+
+"""
 function bladeIndex(vec::Blade, Al::Algebra = CurrentAlgebra)::Array{}
     return Al.Indexes[vec.val.nzind]
 end
 
+"""
+    bladeScalar(vec)::Any
+
+Function that returns scalar of a Blade.
+
+# Arguments
+- `vec::Blade` : A Blade.
+
+# Return
+A real number, the scalar.
+
+"""
 function bladeScalar(vec::Blade)::Any
     return vec.val.nzval[1]
 end
 
+"""
+    lenElements(vec)::Int
+
+Function that returns the length of elements in an Abstract Geometric Algebra Type.
+
+# Arguments
+- `vec::AbstractGeometricAlgebraType` : A multivector or a Blade.
+
+# Return
+An integer, the ammount of elements.
+
+"""
 function lenElements(vec::AbstractGeometricAlgebraType)::Int
     return length(vec.val.nzind)
 end
 
+"""
+    grade(vec)::Int
+
+Function that returns the grade of the Blade.
+
+# Arguments
+- `vec::Blade` : A Blade.
+
+# Return
+An integer, the grade of the blade.
+
+"""
 function grade(vec::Blade)::Int
     if bladeIndex(vec)[1] == [0]
         return 0
@@ -19,6 +68,19 @@ function grade(vec::Blade)::Int
     return length(bladeIndex(vec)[1])
 end
 
+"""
+    gradeProjection(vec, k)::Blade
+
+Function that returns the grade Projection between a Blade and an Integer.
+
+# Arguments
+- `vec::Blade` : A Blade.
+- `k::Int` : An integer to the Grade Projection
+
+# Return
+The result Blade. It might be the 1D blade "1"
+
+"""
 function gradeProjection(vec::Blade, k::Int)::Blade
     if grade(vec) == k
         return vec
@@ -27,11 +89,27 @@ function gradeProjection(vec::Blade, k::Int)::Blade
     end
 end
 
+"""
+    basisScalarProduct(ei, ej, Al)::Int
+
+Function that returns the Scalar Product between two basis blades.
+
+# Arguments
+- `ei::Blade` : A Blade.
+- `ej::Blade` : A Blade.
+- `Al::Algebra` : The Algebra, it is setted as CurrentAlgebra.
+
+# Return
+The result Integer.
+
+"""
 function basisScalarProduct(ei::Blade, ej::Blade, Al::Algebra = CurrentAlgebra)::Int
     i = bladeIndex(ei)[1]
     j = bladeIndex(ej)[1]
-    @assert length(i) == 1 && length(j) == 1
-    @assert i[1] != 0 && j[1] != 0
+
+    if(length(i) != 1 || length(j) != 1 || i[1] == 0 || j[1] == 0)
+        throw(DomainError(i, "This operation must be executed with basis blades."))
+    end
     
     if i[1] != j[1]
         return 0
@@ -42,11 +120,36 @@ function basisScalarProduct(ei::Blade, ej::Blade, Al::Algebra = CurrentAlgebra):
     end
 end
 
-function bladeGeometricProduct(ei::Blade, ej::Blade, Al::Algebra = CurrentAlgebra)
+"""
+    bladeGeometricProduct(ei, ej, Al)::Blade
+
+Function that returns the Geometric Product between two blades.
+It is used for the Operation Table, it is high cost for single operations over time.
+
+# Arguments
+- `ei::Blade` : A Blade.
+- `ej::Blade` : A Blade.
+- `Al::Algebra` : The Algebra, it is setted as CurrentAlgebra.
+
+# Return
+The result Blade.
+
+"""
+function bladeGeometricProduct(ei::Blade, ej::Blade, Al::Algebra = CurrentAlgebra)::Blade
     i = bladeIndex(ei)
     j = bladeIndex(ej)
+
     finalScalar = bladeScalar(ei) * bladeScalar(ej)
     finalIndex = setdiff(union(i[1], j[1]), intersect(i[1], j[1]))
+
+    if i[1][1] == 0 && j[1][1] == 0
+        return Multivectors([1],[finalScalar])
+    elseif i[1][1] == 0
+        return bladeScalarProduct(ej, bladeScalar(ei))
+    elseif j[1][1] == 0
+        return bladeScalarProduct(ei, bladeScalar(ej))
+    end
+        
 
     if i[1][1] == 0
         return ej
@@ -102,11 +205,38 @@ function bladeGeometricProduct(ei::Blade, ej::Blade, Al::Algebra = CurrentAlgebr
 
 end
 
+"""
+    bladeScalarProduct(ei, k)::Blade
+
+Function that returns the Scalar Product between a blades and a 1D Number.
+
+# Arguments
+- `ei::Blade` : A Blade.
+- `k::Number` : A scalar.
+
+# Return
+The result Blade.
+
+"""
 function bladeScalarProduct(ei::Blade, k::Number)::Blade
     finalScalar = ei.val.nzval[1] * k
     return Multivectors([ei.val.nzind[1]], [finalScalar])
 end
 
+"""
+    bladeInnerProduct(ei, ej)::Blade
+
+Function that returns the Inner Product between two blades.
+It is used for the Operation Table, it is high cost for single operations over time.
+
+# Arguments
+- `ei::Blade` : A Blade.
+- `ej::Blade` : A Blade.
+
+# Return
+The result Blade.
+
+"""
 function bladeInnerProduct(ei::Blade, ej::Blade)
 
     k = grade(ei)
@@ -121,6 +251,20 @@ function bladeInnerProduct(ei::Blade, ej::Blade)
 
 end
 
+"""
+    bladeOuterProduct(ei, ej)::Blade
+
+Function that returns the Outer Product between two blades.
+It is used for the Operation Table, it is high cost for single operations over time.
+
+# Arguments
+- `ei::Blade` : A Blade.
+- `ej::Blade` : A Blade.
+
+# Return
+The result Blade.
+
+"""
 function bladeOuterProduct(ei::Blade, ej::Blade)
     k = grade(ei)
     l = grade(ej)
@@ -128,14 +272,7 @@ function bladeOuterProduct(ei::Blade, ej::Blade)
 
 end
 
-function createConsts()
-    for i in 2:length(CurrentAlgebra.Basis)
-        varName = Symbol(CurrentAlgebra.Basis[i][1])
-        k = [i]
-        varValue = Multivectors(k,[1])
-        eval(Meta.parse("const global $(varName) = Multivectors($k,[1])"))
-    end
-end
+# Functions for operator overloading between types.
 
 function Base.:*(ei::Blade, ej::Blade)::Blade
     return bladeGeometricProduct(ei,ej)

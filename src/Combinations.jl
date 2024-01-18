@@ -1,5 +1,5 @@
 """
-    Combinations(lst, k)
+    CombinationsTuple(lst, k)
 
 Function that calculates all combinations in an array of strings.
 
@@ -50,6 +50,19 @@ function CombinationsTuple(lst::Array, k::Int, count::Int)::Array{Tuple{Any,Int}
 
 end
 
+"""
+    CombinationsArray(lst, k)
+
+Function that calculates all combinations in an array of Integers.
+
+# Arguments
+- `lst::Array` : A list of Integers.
+- `k::Int` : The order of the combinations.
+
+# Return
+Returns an array with all combinations of elements taken k at a time.
+
+"""
 function CombinationsArray(lst::Array, k::Int)::Array{Array{Any}}
     
     result = []

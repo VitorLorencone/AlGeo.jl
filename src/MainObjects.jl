@@ -2,25 +2,59 @@ include("Algebra.jl")
 import SparseArrays
 using .SparseArrays
 
+# Abstract Geometric Type for Multivectors and Blades
 abstract type AbstractGeometricAlgebraType end
 
+"""
+    Multivector(val)
+
+Struct that creates the multivector object.
+
+# Arguments
+- `val::SparseArrays.SparseVector{Float64, Int64}` : An sparse vector with the internal values of basis blades and their scalars.
+
+"""
 mutable struct Multivector <: AbstractGeometricAlgebraType
 
     val::SparseArrays.SparseVector{Float64, Int64}
 
 end
 
+"""
+    Blade(val)
+
+Struct that creates the Blade object.
+
+# Arguments
+- `val::SparseArrays.SparseVector{Float64, Int64}` : An sparse vector with the internal values of basis blades and their scalars.
+
+"""
 mutable struct Blade <: AbstractGeometricAlgebraType
 
     val::SparseArrays.SparseVector{Float64, Int64}
 
 end
 
+"""
+    Multivectors(baseVectors, scalars, Al)::AbstractGeometricAlgebraType
+
+Constructor function for creating either blades or multivectors, done automatically.
+
+# Arguments
+- `baseVectors::Array` : An array of integers, representing the actual basis blade that exists in this object in order.
+- `scalars::Array` : An array of integers, representing the scalars of each basis blade in order.
+- `Al::Algebra` : The Algebra, it is setted as CurrentAlgebra.
+
+# Return
+Returns an AbstractGeometricAlgebraType.
+
+"""
 function Multivectors(baseVectors::Array, scalars::Array, Al::Algebra = CurrentAlgebra)
 
     max = 2^(Al.p + Al.q)
 
     for i in baseVectors
+        # Internal Error
         @assert 0 <= i <= max
     end
 
@@ -32,10 +66,12 @@ function Multivectors(baseVectors::Array, scalars::Array, Al::Algebra = CurrentA
     end
 end
 
+# Returns the scalar value of an basis blade in an AbstractGeometricAlgebraType
 function Base.getindex(m::AbstractGeometricAlgebraType, i::Int)
     return m.val[i]
 end
 
+# Write an AbstractGeometricAlgebraType in REPL
 function Base.show(io::IO, a::AbstractGeometricAlgebraType)
     ind = a.val.nzind
     val = a.val.nzval
