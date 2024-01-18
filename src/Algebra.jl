@@ -1,5 +1,4 @@
 include("CanonicalBasis.jl")
-include("OperationTable.jl")
 
 """
     Algebra(p, q, VectorBasis, Basis)

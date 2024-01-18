@@ -1,4 +1,6 @@
-include("GaFunctions.jl")
+include("OperatorOverloading.jl")
+
+const id = Multivectors([1], [1])
 
 """
     CreateSymbols(stringSymbols)
@@ -9,10 +11,7 @@ Create and add to REPL all the (custom or basis) symbols for this Algebra.
 - `stringSymbols::Array` : An array with all the custom or basis symbols.
 
 """
-
-const id = Multivectors([1], [1])
-
-function CreateSymbols(stringSymbols::Array)::Nothing
+function CreateSymbols(stringSymbols::Array)
 
     symbolArray = []
 
@@ -29,6 +28,12 @@ function CreateSymbols(stringSymbols::Array)::Nothing
         eval(:(export $symbol))
     end
 
+end
+
+function CreateTables() 
+    CreateGPTable()
+    CreateIPTable()
+    CreateOPTable()
 end
 
 """
@@ -52,6 +57,7 @@ function Algeo(p = 0, q = 0, VectorBasis = CanonVectorBasis(p, q), Basis = Canon
 
     Al = CreateAlgebra(p, q, VectorBasis, Basis)
     CreateSymbols(Basis)
+    CreateTables()
 
     return Al
 
