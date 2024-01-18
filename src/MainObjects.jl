@@ -66,11 +66,6 @@ function Multivectors(baseVectors::Array, scalars::Array, Al::Algebra = CurrentA
     end
 end
 
-# Returns the scalar value of an basis blade in an AbstractGeometricAlgebraType
-function Base.getindex(m::AbstractGeometricAlgebraType, i::Int)
-    return m.val[i]
-end
-
 # Write an AbstractGeometricAlgebraType in REPL
 function Base.show(io::IO, a::AbstractGeometricAlgebraType)
     ind = a.val.nzind

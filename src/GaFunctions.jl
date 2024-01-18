@@ -46,7 +46,13 @@ An integer, the ammount of elements.
 
 """
 function lenElements(vec::AbstractGeometricAlgebraType)::Int
-    return length(vec.val.nzind)
+    _count_ = 0
+    for i in vec.val.nzval
+        if(i != 0)
+            _count_ += 1
+        end
+    end
+    return _count_
 end
 
 """
@@ -293,6 +299,13 @@ function Base.:^(ei::Blade, ej::Blade)::Blade
     return bladeOuterProduct(ei,ej)
 end
 
-function ⋅(ei::Blade, ej::Blade)::Blade
-    return basisScalarProduct(ei, ej)
+function Base.:(==)(ei::AbstractGeometricAlgebraType, ej::AbstractGeometricAlgebraType)::Bool
+    return ei.val == ej.val
+end
+function Base.:(!=)(ei::AbstractGeometricAlgebraType, ej::AbstractGeometricAlgebraType)::Bool
+    return !(ei == ej)
+end
+
+function Base.:-(ei::AbstractGeometricAlgebraType)::AbstractGeometricAlgebraType
+    return -1 * ei
 end

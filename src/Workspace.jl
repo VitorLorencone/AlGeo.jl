@@ -9,6 +9,9 @@ Create and add to REPL all the (custom or basis) symbols for this Algebra.
 - `stringSymbols::Array` : An array with all the custom or basis symbols.
 
 """
+
+const id = Multivectors([1], [1])
+
 function CreateSymbols(stringSymbols::Array)::Nothing
 
     symbolArray = []
@@ -22,7 +25,8 @@ function CreateSymbols(stringSymbols::Array)::Nothing
 
     for k in eachindex(symbolArray)
         symbol = symbolArray[k]
-        eval(:($symbol = Multivectors([$k+1], [1])))
+        eval(:(const $symbol = Multivectors([$k+1], [1])))
+        eval(:(export $symbol))
     end
 
 end
