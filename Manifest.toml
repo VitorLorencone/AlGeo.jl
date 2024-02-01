@@ -2,7 +2,15 @@
 
 julia_version = "1.9.4"
 manifest_format = "2.0"
-project_hash = "bd736d5c9f74ae0d754ace4275d7e1b120f877f7"
+project_hash = "b303b74ef94bbbd4f0bc47ec4414bab9b8f024b3"
+
+[[deps.AlGeo]]
+deps = ["SparseArrays"]
+git-tree-sha1 = "ac1ded898d1f6dc3fbf00859e3453fc777bf8eb7"
+repo-rev = "main"
+repo-url = "."
+uuid = "ac8882cc-b2bf-4c44-88a5-a54ff16a06a3"
+version = "0.1.0"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"

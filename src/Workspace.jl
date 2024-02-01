@@ -30,6 +30,12 @@ function CreateSymbols(stringSymbols::Array)
 
 end
 
+"""
+    CreateTables()
+
+Create and add to REPL all the custom operation tables for this Algebra.
+
+"""
 function CreateTables() 
     CreateGPTable()
     CreateIPTable()

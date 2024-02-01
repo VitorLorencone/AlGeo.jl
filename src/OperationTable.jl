@@ -250,3 +250,109 @@ The result Blade.
 function bladeOuterProduct(ei::Blade, ej::Blade)::Blade
     return OPTable[ei.val.nzind[1], ej.val.nzind[1]] * bladeScalar(ei) * bladeScalar(ej)
 end
+
+"""
+    multivectorSum(ei::AbstractGeometricAlgebraType, ej::AbstractGeometricAlgebraType)::AbstractGeometricAlgebraType
+
+Function that sums two multivectors and return its result.
+
+# Arguments
+- `ei::AbstractGeometricAlgebraType` : A multivector.
+- `ej::AbstractGeometricAlgebraType` : A multivector.
+
+# Return
+The result Multivector.
+
+"""
+function multivectorSum(ei::AbstractGeometricAlgebraType, ej::AbstractGeometricAlgebraType)::AbstractGeometricAlgebraType
+    result = ei.val + ej.val
+    return Multivectors(result.nzind, result.nzval)
+end
+
+
+"""
+    multivectorSub(ei::AbstractGeometricAlgebraType, ej::AbstractGeometricAlgebraType)::AbstractGeometricAlgebraType
+
+Function that subtracts two multivectors and return its result.
+
+# Arguments
+- `ei::AbstractGeometricAlgebraType` : A multivector.
+- `ej::AbstractGeometricAlgebraType` : A multivector.
+
+# Return
+The result Multivector.
+
+"""
+function multivectorSub(ei::AbstractGeometricAlgebraType, ej::AbstractGeometricAlgebraType)::AbstractGeometricAlgebraType
+    result = ei.val - ej.val
+    return Multivectors(result.nzind, result.nzval)
+end
+
+"""
+    multivectorGP(ei::AbstractGeometricAlgebraType, ej::AbstractGeometricAlgebraType)::AbstractGeometricAlgebraType
+
+Function that computes the geometric product of two multivectors and return its result.
+
+# Arguments
+- `ei::AbstractGeometricAlgebraType` : A multivector.
+- `ej::AbstractGeometricAlgebraType` : A multivector.
+
+# Return
+The result Multivector.
+
+"""
+function multivectorGP(ei:: AbstractGeometricAlgebraType, ej::AbstractGeometricAlgebraType)::AbstractGeometricAlgebraType
+    result = Multivectors([1],[0])
+    for i in eachindex(ei.val.nzind)
+        for j in eachindex(ej.val.nzind)
+            result += bladeGeometricProduct(Multivectors([ei.val.nzind[i]],[ei.val.nzval[i]]), Multivectors([ej.val.nzind[j]],[ej.val.nzval[j]]))
+        end
+    end
+    return result
+end
+
+"""
+    multivectorIP(ei::AbstractGeometricAlgebraType, ej::AbstractGeometricAlgebraType)::AbstractGeometricAlgebraType
+
+Function that computes the inner product of two multivectors and return its result.
+
+# Arguments
+- `ei::AbstractGeometricAlgebraType` : A multivector.
+- `ej::AbstractGeometricAlgebraType` : A multivector.
+
+# Return
+The result Multivector.
+
+"""
+function multivectorIP(ei:: AbstractGeometricAlgebraType, ej::AbstractGeometricAlgebraType)::AbstractGeometricAlgebraType
+    result = Multivectors([1],[0])
+    for i in eachindex(ei.val.nzind)
+        for j in eachindex(ej.val.nzind)
+            result += bladeInnerProduct(Multivectors([ei.val.nzind[i]],[ei.val.nzval[i]]), Multivectors([ej.val.nzind[j]],[ej.val.nzval[j]]))
+        end
+    end
+    return result
+end
+
+"""
+    multivectorOP(ei::AbstractGeometricAlgebraType, ej::AbstractGeometricAlgebraType)::AbstractGeometricAlgebraType
+
+Function that computes the outer product of two multivectors and return its result.
+
+# Arguments
+- `ei::AbstractGeometricAlgebraType` : A multivector.
+- `ej::AbstractGeometricAlgebraType` : A multivector.
+
+# Return
+The result Multivector.
+
+"""
+function multivectorOP(ei:: AbstractGeometricAlgebraType, ej::AbstractGeometricAlgebraType)::AbstractGeometricAlgebraType
+    result = Multivectors([1],[0])
+    for i in eachindex(ei.val.nzind)
+        for j in eachindex(ej.val.nzind)
+            result += bladeOuterProduct(Multivectors([ei.val.nzind[i]],[ei.val.nzval[i]]), Multivectors([ej.val.nzind[j]],[ej.val.nzval[j]]))
+        end
+    end
+    return result
+end
