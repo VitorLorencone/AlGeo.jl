@@ -27,7 +27,7 @@ function multivectorGPMulti(ei::AbstractGeometricAlgebraType, ej::AbstractGeomet
     return result.valor
 end
 
-n = 2
+n = 10
 Algeo(n)
 mv = Multivectors(collect(1:2^n), ones(2^n))
 
