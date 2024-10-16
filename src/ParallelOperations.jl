@@ -1,3 +1,5 @@
+#Talvez a soma de multivetores não seja linear. Corrigir isso com mais memória?
+
 include("Workspace.jl")
 using BenchmarkTools
 using Base.Threads
@@ -20,7 +22,7 @@ end
 function multivectorGPMulti(ei::AbstractGeometricAlgebraType, ej::AbstractGeometricAlgebraType)::AbstractGeometricAlgebraType
     result = initialize_atomic_agat(Multivectors([1],[0]))
     Threads.@threads for i in eachindex(ei.val.nzind)
-        Threads.@threads for j in eachindex(ej.val.nzind)
+        for j in eachindex(ej.val.nzind)
             atomic_add_agat!(result, bladeGeometricProduct(Multivectors([ei.val.nzind[i]],[ei.val.nzval[i]]), Multivectors([ej.val.nzind[j]],[ej.val.nzval[j]])))
         end
     end
