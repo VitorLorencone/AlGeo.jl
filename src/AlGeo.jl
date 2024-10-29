@@ -1,12 +1,12 @@
 #=
-TODO: Corrigir o show para mostrar o valor com subíndices
+TODO: Add função de LoadAlgebra
 =#
 
 module AlGeo
 
 export Algeo, id
-export Multivectors, AbstractGeometricAlgebraType, Blade, Multivector, OPTable, IPTable, GPTable
-export bladeIndex, bladeScalar, bladeGeometricProduct, bladeInnerProduct, bladeOuterProduct, grade, gradeProjection, basisScalarProduct, multivectorSum, multivectorSub, multivectorOP, multivectorIP, multivectorGP
+export Multivectors, AbstractGeometricAlgebraType, Blade, Multivector
+export bladeIndex, grade, gradeProjection
 
 include("Workspace.jl")
 
