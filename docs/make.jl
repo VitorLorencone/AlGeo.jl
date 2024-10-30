@@ -8,8 +8,7 @@ makedocs(
     modules = [AlGeo],
     repo = Documenter.Remotes.GitHub("VitorLorencone", "AlGeo.jl"),
     pages = [
-        "index.md" => [
-            "teste/mod1.md"
-        ]
+        "Home" => "index.md",
+        "Section" => "mod1.md"
     ]
 )
