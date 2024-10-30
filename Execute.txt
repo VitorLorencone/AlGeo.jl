@@ -1,2 +1,5 @@
 pkg> add .
-using AlGeo.
+using AlGeo
+
+em /docs
+julia --project make.jl
