@@ -4,8 +4,8 @@ using Test
 
 AlD3 = Algeo(3)
 
-@test Multivector <: AbstractGeometricAlgebraType
-@test Blade <: AbstractGeometricAlgebraType
+@test Multivector <: AlGeo.AbstractGeometricAlgebraType
+@test Blade <: AlGeo.AbstractGeometricAlgebraType
 @test typeof(Multivectors([1],[1])) <: Blade
 @test typeof(Multivectors([1,2],[1,1])) <: Multivector
 @test Multivectors([8],[2.5]) == 2.5*e1e2e3

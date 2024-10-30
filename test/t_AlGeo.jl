@@ -8,10 +8,10 @@ Complex = Algeo(0, 1, ["i"])
 @test (1+i)*(1+i) == 2*i
 @test (1+i)*(1-i) == 2*id
 
-R2 = Algeo(2,0,["l","j"])
+R2 = Algeo(2,0,["i","j"])
 @test i^i == 0*id
 @test i|j == 0*id
-@test i^j == lj
+@test i^j == ij
 @test (i + 2*j)|(5*i+2*j) == 9*id
 
 ### Problems in changing algebra

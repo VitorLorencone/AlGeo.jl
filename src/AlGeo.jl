@@ -5,8 +5,8 @@ TODO: Add função de LoadAlgebra
 module AlGeo
 
 export Algeo, id
-export Multivectors, AbstractGeometricAlgebraType, Blade, Multivector
-export bladeIndex, grade, gradeProjection
+export Multivectors, Blade, Multivector
+export grade, gradeProjection
 
 include("Workspace.jl")
 

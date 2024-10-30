@@ -1,4 +1,4 @@
-include("MainObjects.jl")
+include("MainStructs.jl")
 
 """
     bladeIndex(vec, Al)::Array

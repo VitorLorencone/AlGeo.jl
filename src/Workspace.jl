@@ -1,5 +1,3 @@
-# TODO: Adicionar suporte para entrar com arquivos de script
-
 include("OperatorOverloading.jl")
 
 const id = Multivectors([1], [1])
