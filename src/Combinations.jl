@@ -1,5 +1,5 @@
 """
-    CombinationsTuple(lst, k)
+    CombinationsTuple(lst, k, count)::Array{Tuple{Any,Int}}
 
 Function that calculates all combinations in an array of strings.
 
@@ -51,7 +51,7 @@ function CombinationsTuple(lst::Array, k::Int, count::Int)::Array{Tuple{Any,Int}
 end
 
 """
-    CombinationsArray(lst, k)
+    CombinationsArray(lst, k)::Array{Array{Any}}
 
 Function that calculates all combinations in an array of Integers.
 

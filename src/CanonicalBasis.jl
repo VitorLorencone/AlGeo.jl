@@ -1,7 +1,7 @@
 include("Combinations.jl")
 
 """
-    CanonVectorBasis(p, q)
+    CanonVectorBasis(p, q)::Array{String}
 
 Function that writes the canonical vector space, given the parameters p and q for definition
 
@@ -35,7 +35,7 @@ function CanonVectorBasis(p::Int, q::Int = 0)::Array{String}
 end
 
 """
-    CanonBasis(VectorCanonBasis)
+    CanonBasis(VectorBasis)::Array{Tuple{String, Int}}
 
 Function that lists all the combinations of canonical vectors in a given Algebra.
 

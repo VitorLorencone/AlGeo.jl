@@ -1,5 +1,6 @@
 include("OperatorOverloading.jl")
 
+# Create "id" value for any algebra
 const id = Multivectors([1], [1])
 
 """
@@ -53,7 +54,7 @@ If not defined, the last two parameters are automatically calculated as canonica
 - `p::Int` : The first parameter of the definition
 - `q::Int` : The second parameter of the definition
 - `VectorBasis::Array{String}` : An Array with vectors to work with
-- `Basis::Array{Tuple{String,Int}}` : And Array with the multivector base and it's indexes
+- `Basis::Array{Tuple{String,Int}}` : An Array with the multivector base and it's indexes
 
 # Return
 Returns the created Algebra object.

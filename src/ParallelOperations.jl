@@ -1,3 +1,4 @@
+# Useless by now
 #Talvez a soma de multivetores não seja linear. Corrigir isso com mais memória?
 
 include("Workspace.jl")

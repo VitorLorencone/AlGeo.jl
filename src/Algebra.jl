@@ -1,7 +1,7 @@
 include("CanonicalBasis.jl")
 
 """
-    Algebra(p, q, VectorBasis, Basis)
+    Algebra(p, q, VectorBasis, Basis, Indexes)
 
 A structure to define an algebra to be worked with its respective dimensions and canonical vectors.
 
@@ -9,7 +9,8 @@ A structure to define an algebra to be worked with its respective dimensions and
 - `p::Int` : The first parameter of the definition
 - `q::Int` : The second parameter of the definition
 - `VectorBasis::Array{String}` : An Array with vectors to work with
-- `Basis::Array{Tuple{String,Int}}` : And Array with the multivector base and it's indexes
+- `Basis::Array{Tuple{String,Int}}` : An Array with the multivector base and it's indexes
+- `Indexes::Array{Array{Int}}` : An array with all the indexes of canonical blades
 
 """
 struct Algebra
@@ -23,7 +24,6 @@ struct Algebra
 end
 
 # Show Functions for Algebra Struct
-
 function Base.show(io::IO, a::Algebra)
     println(io, "Algebra")
     println(io, "p: $(a.p)")
@@ -45,7 +45,7 @@ If not defined, the last two parameters are automatically calculated as canonica
 - `p::Int` : The first parameter of the definition
 - `q::Int` : The second parameter of the definition
 - `VectorBasis::Array{String}` : An Array with vectors to work with
-- `Basis::Array{Tuple{String,Int}}` : And Array with the multivector base and it's indexes
+- `Basis::Array{Tuple{String,Int}}` : An Array with the multivector base and it's indexes
 
 # Return
 Returns the created Algebra object.
