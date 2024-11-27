@@ -1,6 +1,6 @@
 #=
-TODO: Add função de LoadAlgebra
-TODO: Add e_inf e e_0
+TODO: Add function LoadAlgebra
+TODO: Add e_inf & e_0
 TODO: Treat Errors
 =#
 
