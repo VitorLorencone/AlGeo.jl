@@ -5,10 +5,16 @@ using .AlGeo
 makedocs(
     sitename = "AlGeo",
     format = Documenter.HTML(),
+    doctest = true,
     modules = [AlGeo],
     repo = Documenter.Remotes.GitHub("VitorLorencone", "AlGeo.jl"),
     pages = [
         "Home" => "index.md",
-        "Section" => "mod1.md"
+        "Manual" => [
+            "Installation" => "install.md",
+            "Functions" => "functions.md",
+            "Examples" => "examples.md"
+        ],
+        "References" => "references.md"
     ]
 )
