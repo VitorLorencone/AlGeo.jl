@@ -20,5 +20,6 @@ makedocs(
 )
 
 deploydocs(
-    repo = "https://github.com/VitorLorencone/Mingal.jl"
+    repo = "github.com/VitorLorencone/Mingal.jl.git",
+    devbranch = "main"
 )
