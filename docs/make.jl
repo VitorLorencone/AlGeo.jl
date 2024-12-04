@@ -18,3 +18,7 @@ makedocs(
         "References" => "references.md"
     ]
 )
+
+deploydocs(
+    repo = "https://github.com/VitorLorencone/Mingal.jl"
+)
