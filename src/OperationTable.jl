@@ -16,18 +16,18 @@ The result Blade.
 
 """
 function rawBladeGeometricProduct(ei::Blade, ej::Blade, Al::Algebra = CurrentAlgebra)::Blade
-    i = bladeIndex(ei)
-    j = bladeIndex(ej)
+    i = bladeindex(ei)
+    j = bladeindex(ej)
 
-    finalScalar = bladeScalar(ei) * bladeScalar(ej)
+    finalScalar = bladescalar(ei) * bladescalar(ej)
     finalIndex = setdiff(union(i[1], j[1]), intersect(i[1], j[1]))
 
     if i[1][1] == 0 && j[1][1] == 0
         return Multivectors([1],[finalScalar])
     elseif i[1][1] == 0
-        return bladeScalarProduct(ej, bladeScalar(ei))
+        return bladeScalarProduct(ej, bladescalar(ei))
     elseif j[1][1] == 0
-        return bladeScalarProduct(ei, bladeScalar(ej))
+        return bladeScalarProduct(ei, bladescalar(ej))
     end
         
 
@@ -126,7 +126,7 @@ function rawBladeInnerProduct(ei::Blade, ej::Blade, GPTable::Array{Any,2} = Crea
     k = grade(ei)
     l = grade(ej)
     if k != 0 && l != 0
-        return gradeProjection(GPTable[ei.val.nzind[1], ej.val.nzind[1]], abs(k-l))
+        return gradeprojection(GPTable[ei.val.nzind[1], ej.val.nzind[1]], abs(k-l))
     elseif k == 0
         return ej
     else
@@ -152,7 +152,7 @@ The result Blade.
 function rawBladeOuterProduct(ei::Blade, ej::Blade, GPTable::Array{Any,2} = CreateGPTable())::Blade
     k = grade(ei)
     l = grade(ej)
-    return gradeProjection(GPTable[ei.val.nzind[1], ej.val.nzind[1]], l+k)
+    return gradeprojection(GPTable[ei.val.nzind[1], ej.val.nzind[1]], l+k)
 end
 
 """
@@ -214,7 +214,7 @@ The result Blade.
 
 """
 function bladeGeometricProduct(ei::Blade, ej::Blade, Al::Algebra = CurrentAlgebra)::Blade
-    return GPTable[ei.val.nzind[1], ej.val.nzind[1]] * bladeScalar(ei) * bladeScalar(ej)
+    return GPTable[ei.val.nzind[1], ej.val.nzind[1]] * bladescalar(ei) * bladescalar(ej)
 end
 
 """
@@ -231,7 +231,7 @@ The result Blade.
 
 """
 function bladeInnerProduct(ei::Blade, ej::Blade)::Blade
-    return IPTable[ei.val.nzind[1], ej.val.nzind[1]] * bladeScalar(ei) * bladeScalar(ej)
+    return IPTable[ei.val.nzind[1], ej.val.nzind[1]] * bladescalar(ei) * bladescalar(ej)
 end
 
 """
@@ -248,7 +248,7 @@ The result Blade.
 
 """
 function bladeOuterProduct(ei::Blade, ej::Blade)::Blade
-    return OPTable[ei.val.nzind[1], ej.val.nzind[1]] * bladeScalar(ei) * bladeScalar(ej)
+    return OPTable[ei.val.nzind[1], ej.val.nzind[1]] * bladescalar(ei) * bladescalar(ej)
 end
 
 """

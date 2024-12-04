@@ -8,7 +8,7 @@ module Mingal
 
 export Setup, id
 export Multivectors, Blade, Multivector
-export grade, gradeProjection
+export grade, gradeprojection
 
 include("Workspace.jl")
 

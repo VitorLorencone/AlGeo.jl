@@ -1,7 +1,7 @@
 include("MainStructs.jl")
 
 """
-    bladeIndex(vec, Al)::Array
+    bladeindex(vec, Al)::Array
 
 Function that returns the indexes of a blade.
 
@@ -13,12 +13,12 @@ Function that returns the indexes of a blade.
 Returns an array with all indexes of that blade.
 
 """
-function bladeIndex(vec::Blade, Al::Algebra = CurrentAlgebra)::Array{}
+function bladeindex(vec::Blade, Al::Algebra = CurrentAlgebra)::Array{}
     return Al.Indexes[vec.val.nzind]
 end
 
 """
-    bladeScalar(vec)::Any
+    bladescalar(vec)::Any
 
 Function that returns scalar of a Blade.
 
@@ -29,7 +29,7 @@ Function that returns scalar of a Blade.
 A real number, the scalar.
 
 """
-function bladeScalar(vec::Blade)::Any
+function bladescalar(vec::Blade)::Any
     return vec.val.nzval[1]
 end
 
@@ -68,14 +68,14 @@ An integer, the grade of the blade.
 
 """
 function grade(vec::Blade)::Int
-    if bladeIndex(vec)[1] == [0]
+    if bladeindex(vec)[1] == [0]
         return 0
     end
-    return length(bladeIndex(vec)[1])
+    return length(bladeindex(vec)[1])
 end
 
 """
-    gradeProjection(vec, k)::Blade
+    gradeprojection(vec, k)::Blade
 
 Function that returns the grade Projection between a Blade and an Integer.
 
@@ -87,7 +87,7 @@ Function that returns the grade Projection between a Blade and an Integer.
 The result Blade. It might be the 1D blade "1"
 
 """
-function gradeProjection(vec::Blade, k::Int)::Blade
+function gradeprojection(vec::Blade, k::Int)::Blade
     if grade(vec) == k
         return vec
     else
@@ -96,7 +96,7 @@ function gradeProjection(vec::Blade, k::Int)::Blade
 end
 
 """
-    basisScalarProduct(ei, ej, Al)::Int
+    scalarproduct(ei, ej, Al)::Int
 
 Function that returns the Scalar Product between two basis blades.
 
@@ -109,9 +109,9 @@ Function that returns the Scalar Product between two basis blades.
 The result Integer.
 
 """
-function basisScalarProduct(ei::Blade, ej::Blade, Al::Algebra = CurrentAlgebra)::Int
-    i = bladeIndex(ei)[1]
-    j = bladeIndex(ej)[1]
+function scalarproduct(ei::Blade, ej::Blade, Al::Algebra = CurrentAlgebra)::Int
+    i = bladeindex(ei)[1]
+    j = bladeindex(ej)[1]
 
     if(length(i) != 1 || length(j) != 1 || i[1] == 0 || j[1] == 0)
         throw(DomainError(i, "This operation must be executed with basis blades."))
