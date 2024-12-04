@@ -1,13 +1,13 @@
 # Examples
 
 ```@setup ss
-using AlGeo
-Complex = Algeo(0, 1, ["i"])
+using Mingal
+Complex = Setup(0, 1, ["i"])
 ```
 
 ```@setup xx
-using AlGeo
-R2 = Algeo(2,0,["i","j"])
+using Mingal
+R2 = Setup(2,0,["i","j"])
 ```
 
 *How to use?*
@@ -17,10 +17,10 @@ R2 = Algeo(2,0,["i","j"])
 
 ## Complex Plane
 
-This example demonstrates a way to work with complex numbers using the AlGeo library, in a user-friendly manner with regard to notation:
+This example demonstrates a way to work with complex numbers using the Mingal library, in a user-friendly manner with regard to notation:
 
 ```julia
-Complex = Algeo(0, 1, ["i"])
+Complex = Setup(0, 1, ["i"])
 ```
 
 ```@repl ss
@@ -32,10 +32,10 @@ i*i == -1*id
 
 ## R2 plane
 
-This example demonstrates a way to work with the R2 vectors using the AlGeo library, in a user-friendly manner with regard to notation:
+This example demonstrates a way to work with the R2 vectors using the Mingal library, in a user-friendly manner with regard to notation:
 
 ```julia
-R2 = Algeo(2,0,["i","j"])
+R2 = Setup(2,0,["i","j"])
 ```
 
 ```@repl xx

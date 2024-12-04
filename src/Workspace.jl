@@ -44,7 +44,7 @@ function CreateTables()
 end
 
 """
-    Algeo(p, q, VectorBasis, Basis)::Algebra
+    Setup(p, q, VectorBasis, Basis)::Algebra
 
 Main function for creating your Algebra and adding its basis blades to REPL.
 Constructor Function of an algebraic object with parameters p, q, R^{p, q}, and its multivector space.
@@ -60,7 +60,7 @@ If not defined, the last two parameters are automatically calculated as canonica
 Returns the created Algebra object.
 
 """
-function Algeo(p = 0, q = 0, VectorBasis = CanonVectorBasis(p, q), Basis = CanonBasis(VectorBasis))::Algebra
+function Setup(p = 0, q = 0, VectorBasis = CanonVectorBasis(p, q), Basis = CanonBasis(VectorBasis))::Algebra
 
     Al = CreateAlgebra(p, q, VectorBasis, Basis)
     CreateSymbols(Basis)

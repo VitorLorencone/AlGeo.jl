@@ -1,5 +1,5 @@
 pkg> add .
-using AlGeo
+using Mingal
 
 em /docs
 julia --project make.jl

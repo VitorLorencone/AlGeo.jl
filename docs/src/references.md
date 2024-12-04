@@ -1,7 +1,7 @@
 ```@meta
-CurrentModule = AlGeo
+CurrentModule = Mingal
 ```
 
 ```@autodocs
-Modules = [AlGeo]
+Modules = [Mingal]
 ```

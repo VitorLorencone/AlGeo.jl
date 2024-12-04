@@ -1,13 +1,13 @@
 using Documenter
-include("../src/AlGeo.jl")
-using .AlGeo
+include("../src/Mingal.jl")
+using .Mingal
 
 makedocs(
-    sitename = "AlGeo",
+    sitename = "Mingal",
     format = Documenter.HTML(),
     doctest = true,
-    modules = [AlGeo],
-    repo = Documenter.Remotes.GitHub("VitorLorencone", "AlGeo.jl"),
+    modules = [Mingal],
+    repo = Documenter.Remotes.GitHub("VitorLorencone", "Mingal.jl"),
     pages = [
         "Home" => "index.md",
         "Manual" => [

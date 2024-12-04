@@ -1,14 +1,14 @@
-# AlGeo.jl
+# Mingal.jl
 
 ```@meta
-CurrentModule = AlGeo
+CurrentModule = Mingal
 ```
 
 *A Geometric Algebra library written in Julia*
 
 ## Overview
 
-This page is dedicated to document the use of AlGeo, a library for [Geometric Algebra](https://en.wikipedia.org/wiki/Geometric_algebra). Our goal is to provide an accessible and easy to learn experience for students and researchers interested in using (and programming with) a Geometric Algebra library.
+This page is dedicated to document the use of Mingal, a library for [Geometric Algebra](https://en.wikipedia.org/wiki/Geometric_algebra). Our goal is to provide an accessible and easy to learn experience for students and researchers interested in using (and programming with) a Geometric Algebra library.
 
 Our aim is to offer a relatively simple, open, easy-to-install, and focused environment for Julia users. This library was developed by implementing basic operations as described in textbooks, without an emphasis on optimizing functions based on other libraries. For the future, the plans are to expand the library's ease of use and introduce concepts for modeling and visualizing spaces in Geometric Algebra.
 

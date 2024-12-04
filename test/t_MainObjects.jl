@@ -1,11 +1,11 @@
-include("../src/AlGeo.jl")
-using .AlGeo
+include("../src/Mingal.jl")
+using .Mingal
 using Test
 
-AlD3 = Algeo(3)
+AlD3 = Setup(3)
 
-@test Multivector <: AlGeo.AbstractGeometricAlgebraType
-@test Blade <: AlGeo.AbstractGeometricAlgebraType
+@test Multivector <: Mingal.AbstractGeometricAlgebraType
+@test Blade <: Mingal.AbstractGeometricAlgebraType
 @test typeof(Multivectors([1],[1])) <: Blade
 @test typeof(Multivectors([1,2],[1,1])) <: Multivector
 @test Multivectors([8],[2.5]) == 2.5*e1e2e3

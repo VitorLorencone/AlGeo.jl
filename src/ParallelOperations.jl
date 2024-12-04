@@ -31,7 +31,7 @@ function multivectorGPMulti(ei::AbstractGeometricAlgebraType, ej::AbstractGeomet
 end
 
 n = 10
-Algeo(n)
+Setup(n)
 mv = Multivectors(collect(1:2^n), ones(2^n))
 
 println(Threads.nthreads())

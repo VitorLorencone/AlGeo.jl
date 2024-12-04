@@ -1,14 +1,14 @@
-include("../src/AlGeo.jl")
-using .AlGeo
+include("../src/Mingal.jl")
+using .Mingal
 using Test
 
-Complex = Algeo(0, 1, ["i"])
+Complex = Setup(0, 1, ["i"])
 @test i*i == -1*id
 @test 5*i*i*i == -5*i
 @test (1+i)*(1+i) == 2*i
 @test (1+i)*(1-i) == 2*id
 
-R2 = Algeo(2,0,["i","j"])
+R2 = Setup(2,0,["i","j"])
 @test i^i == 0*id
 @test i|j == 0*id
 @test i^j == ij

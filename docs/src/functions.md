@@ -1,49 +1,49 @@
 # Functions
 
 ```@setup ss
-using AlGeo
+using Mingal
 ```
 
 *What are the main functions and what they do*
 
-## Algeo
+## Setup
 
-Algeo is the most important function of any system with this library, as it defines an environment, that is, an algebra that will be used to handle future operations. Thus, as its definition follows, we have:
+Setup is the most important function of any system with this library, as it defines an environment, that is, an algebra that will be used to handle future operations. Thus, as its definition follows, we have:
 
 ```@docs
-AlGeo.Algeo
+Mingal.Setup
 ```
 
 Which allows us to create spaces like the following, representing the imaginary set:
 
 ```@example ss
-Algeo(0,1,["i"])
+Setup(0,1,["i"])
 ```
 
 ## Blades
 
-All types introduced in AlGeo are subtype of `AbstractGeometricAlgebraType`. Blade type is the most primitive subtype wich is used to define more complete structures, like Multivectors. Once we define an Algebra, a set of Blade is created. For example, let us create the space R3.
+All types introduced in Mingal are subtype of `AbstractGeometricAlgebraType`. Blade type is the most primitive subtype wich is used to define more complete structures, like Multivectors. Once we define an Algebra, a set of Blade is created. For example, let us create the space R3.
 
 ```@example ss
-Algeo(3)
+Setup(3)
 ```
 
 Now, the elements id, e1, e2, e3, e12, e13, e23, e123 were created, representing the basis blades of the Algebra.
 
 ```@example ss
-typeof(e1) <: AlGeo.AbstractGeometricAlgebraType
+typeof(e1) <: Mingal.AbstractGeometricAlgebraType
 ```
 
 By now, operation tables related to the geometric, internal and outer products are created and will be used in these operations. The `id` element is a BasisBlade used in place of the number 1.
 
 ## Multivectors
 
-Multivectors are mutable structures primarily used for internal operations within AlGeo, but they are subtypes of `AbstractGeometricAlgebraType`. They are composed of the sum of blades arranged in a sparse vector, used for more efficient representation.
+Multivectors are mutable structures primarily used for internal operations within Mingal, but they are subtypes of `AbstractGeometricAlgebraType`. They are composed of the sum of blades arranged in a sparse vector, used for more efficient representation.
 
 Note that there when is defined a scalar product or sum or diference between an real scalar and BasisBlade element a new Multivector is always returned. A MultiVector struct is showed just in function and order of the Basis Blade set that define the space.
 
 ```@repl ss; continued=true
-Multivector <: AlGeo.AbstractGeometricAlgebraType # true
+Multivector <: Mingal.AbstractGeometricAlgebraType # true
 Multivectors([8],[2.5]) == 2.5*e1e2e3 # true
 Multivectors([1, 2, 3, 4, 5, 6],[1, 2, 3, 4, 5, 6]) == 1 + 2*e1 + 3*e2 + 4*e3 + 5*e1e2 + 6*e1e3 # true
 ```
@@ -53,31 +53,31 @@ Multivectors([1, 2, 3, 4, 5, 6],[1, 2, 3, 4, 5, 6]) == 1 + 2*e1 + 3*e2 + 4*e3 + 
 ### bladeIndex
 
 ```@docs
-AlGeo.bladeIndex
+Mingal.bladeIndex
 ```
 
 And it works as the following example:
 
 ```@repl ss
-AlGeo.bladeIndex(e1e2)
+Mingal.bladeIndex(e1e2)
 ```
 
 ### bladeScalar
 
 ```@docs
-AlGeo.bladeScalar
+Mingal.bladeScalar
 ```
 
 And it works as the following example:
 
 ```@repl ss
-AlGeo.bladeScalar(4.5*e1e2)
+Mingal.bladeScalar(4.5*e1e2)
 ```
 
 ### grade
 
 ```@docs
-AlGeo.grade
+Mingal.grade
 ```
 
 And it works as the following example:
@@ -89,7 +89,7 @@ grade(e1e2e3)
 ### gradeProjection
 
 ```@docs
-AlGeo.gradeProjection
+Mingal.gradeProjection
 ```
 
 And it works as the following example:
@@ -112,7 +112,7 @@ And it works as the following example:
 
 ### Geometric Product
 
-The geometric product is the core of all geometric algebra, and here in AlGeo, it is represented between blades and multivectors using the symbol `*`, which should not be confused with the scalar product symbol. Although they are the same, they have different contexts and operands of different types.
+The geometric product is the core of all geometric algebra, and here in Mingal, it is represented between blades and multivectors using the symbol `*`, which should not be confused with the scalar product symbol. Although they are the same, they have different contexts and operands of different types.
 
 And it works as the following example:
 
@@ -122,7 +122,7 @@ e3*e1 == -e1e3
 
 ### Inner Product
 
-The inner product is another type of operation defined for Geometric Algebra and is represented within AlGeo by the symbol `|`.
+The inner product is another type of operation defined for Geometric Algebra and is represented within Mingal by the symbol `|`.
 
 And it works as the following example:
 
@@ -132,7 +132,7 @@ e1e2|e1 == -e2
 
 ### Outer Product
 
-The Outer product is another type of operation defined for Geometric Algebra and is represented within AlGeo by the symbol `^`.
+The Outer product is another type of operation defined for Geometric Algebra and is represented within Mingal by the symbol `^`.
 
 And it works as the following example:
 

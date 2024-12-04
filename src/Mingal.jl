@@ -4,9 +4,9 @@ TODO: Add e_inf & e_0
 TODO: Treat Errors
 =#
 
-module AlGeo
+module Mingal
 
-export Algeo, id
+export Setup, id
 export Multivectors, Blade, Multivector
 export grade, gradeProjection
 
