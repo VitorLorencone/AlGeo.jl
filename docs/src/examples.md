@@ -5,11 +5,6 @@ using Mingal
 Complex = Setup(0, 1, ["i"])
 ```
 
-```@setup xx
-using Mingal
-R2 = Setup(2,0,["i","j"])
-```
-
 *How to use?*
 
 !!! note
@@ -30,9 +25,14 @@ i*i == -1*id
 (1+i)*(1-i) == 2*id
 ```
 
-## R2 plane
+```@setup xx
+using Mingal
+R2 = Setup(2,0,["i","j"])
+```
 
-This example demonstrates a way to work with the R2 vectors using the Mingal library, in a user-friendly manner with regard to notation:
+## ℝ² plane
+
+This example demonstrates a way to work with the ℝ² vectors using the Mingal library, in a user-friendly manner with regard to notation:
 
 ```julia
 R2 = Setup(2,0,["i","j"])

@@ -6,9 +6,9 @@ using Mingal
 
 *What are the main functions and what they do*
 
-## Setup
+## Setup()
 
-Setup is the most important function of any system with this library, as it defines an environment, that is, an algebra that will be used to handle future operations. Thus, as its definition follows, we have:
+Setup() is the most important function of any system with this library, as it defines an environment, that is, an algebra that will be used to handle future operations. Thus, as its definition follows, we have:
 
 ```@docs
 Mingal.Setup
@@ -28,7 +28,7 @@ All types introduced in Mingal are subtype of `AbstractGeometricAlgebraType`. Bl
 Setup(3)
 ```
 
-Now, the elements id, e1, e2, e3, e12, e13, e23, e123 were created, representing the basis blades of the Algebra.
+Now, the elements `id`, `e1`, `e2`, `e3`, `e1e2`, `e1e3`, `e2e3`, `e1e2e3` were created, representing the basis blades of the Algebra.
 
 ```@example ss
 typeof(e1) <: Mingal.AbstractGeometricAlgebraType
@@ -40,7 +40,7 @@ By now, operation tables related to the geometric, internal and outer products a
 
 Multivectors are mutable structures primarily used for internal operations within Mingal, but they are subtypes of `AbstractGeometricAlgebraType`. They are composed of the sum of blades arranged in a sparse vector, used for more efficient representation.
 
-Note that there when is defined a scalar product or sum or diference between an real scalar and BasisBlade element a new Multivector is always returned. A MultiVector struct is showed just in function and order of the Basis Blade set that define the space.
+Note that there when is defined a scalar product or sum or diference between an real scalar and BasisBlade element a new Multivector is always returned. A Multivector struct is showed just in function and order of the Basis Blade set that define the space.
 
 ```@repl ss; continued=true
 Multivector <: Mingal.AbstractGeometricAlgebraType # true
@@ -50,31 +50,31 @@ Multivectors([1, 2, 3, 4, 5, 6],[1, 2, 3, 4, 5, 6]) == 1 + 2*e1 + 3*e2 + 4*e3 + 
 
 ## Simple Blade functions
 
-### bladeIndex
+### bladeindex()
 
 ```@docs
-Mingal.bladeIndex
+Mingal.bladeindex
 ```
 
 And it works as the following example:
 
 ```@repl ss
-Mingal.bladeIndex(e1e2)
+Mingal.bladeindex(e1e2)
 ```
 
-### bladeScalar
+### bladescalar()
 
 ```@docs
-Mingal.bladeScalar
+Mingal.bladescalar
 ```
 
 And it works as the following example:
 
 ```@repl ss
-Mingal.bladeScalar(4.5*e1e2)
+Mingal.bladescalar(4.5*e1e2)
 ```
 
-### grade
+### grade()
 
 ```@docs
 Mingal.grade
@@ -86,23 +86,23 @@ And it works as the following example:
 grade(e1e2e3)
 ```
 
-### gradeProjection
+### gradeprojection()
 
 ```@docs
-Mingal.gradeProjection
+Mingal.gradeprojection
 ```
 
 And it works as the following example:
 
 ```@repl ss
-gradeProjection(-e1e2, 2) == -1.0*e1e2
+gradeprojection(-e1e2, 2) == -1.0*e1e2
 ```
 
 ## Operations
 
-### Scalar Product
+### Scalar Multiplication
 
-The scalar product is a type of operation that occurs between a blade or multivector and any scalar number. Its symbol for operations is `*`
+The scalar multiplication is a type of operation that occurs between a blade or multivector and any scalar number. Its symbol for operations is `*`
 
 And it works as the following example:
 
